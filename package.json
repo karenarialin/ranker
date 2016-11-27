@@ -1,0 +1,26 @@
+{
+  "name": "Ranker",
+  "version": "1.0.0",
+  "description": "ReactJS app that helps you rank items in a list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npm run build && npm run git-commit && npm run git-push",
+    "build": "webpack",
+    "start": "webpack-dev-server --watch-poll"
+  },
+  "author": "Karen Lin",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-react": "^6.16.0",
+    "html-webpack-plugin": "^2.22.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
