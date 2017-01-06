@@ -1,34 +1,37 @@
 {
   "name": "ranker",
   "version": "1.0.0",
-  "description": "ReactJS app that helps you rank items in a list",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npm run build && npm run git-commit && npm run git-push",
-    "build": "webpack",
-    "start": "webpack-dev-server --watch-poll"
-  },
-  "author": "Karen Lin",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
-  },
-  "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.8",
-    "babel-preset-react": "^6.16.0",
-    "html-webpack-plugin": "^2.22.0",
-    "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/karenarialin/ranker.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/karenarialin/ranker/issues"
   },
-  "homepage": "https://github.com/karenarialin/ranker#readme"
+  "homepage": "https://github.com/karenarialin/ranker#readme",
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "react-hot-loader": "^1.3.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "engines": {
+    "node": "6.8.1"
+  }
 }
