@@ -39,7 +39,7 @@ def gapInsertionSort(alist,start,gap):
         currentValue = alist[i] #one on right, b
         position = i #the element you're on right now
         comparedValue = alist[position-gap] #one on left, a
-        #print('next i value is ', i, comparedValue, currentValue) #test
+        print('next position value is ', i, comparedValue, currentValue) #test
 
         while position>=gap: #while there are still valid elements to the left, #and alist[position-gap]>currentValue: #if left bigger than right, go into while loop
           prefer = input_function('Which do you prefer: a)%s or b)%s?' % (comparedValue, currentValue))
@@ -50,19 +50,20 @@ def gapInsertionSort(alist,start,gap):
             break
           elif prefer == 'b': #move b to the left, a to right
             alist[position]=alist[position-gap] #change right (b) into left (a)
-            position = position-gap #if switches, position changes to left one
-            alist[position]=currentValue #if switched, changes left to right. If not, keeps right the same
+            position = position-gap #position changes to left one
+            alist[position]=currentValue #changes left to right. If not, keeps right the same
             comparedValue = alist[position-gap]
             currentValue = alist[position]
             comparisons += 1
             #print(alist)
           else:
             print('Please enter either a or b')
+          print(alist)
             
 # Part 3: Calling the ShellSort
 
 alist = item_list
-class_list = []
+# class_list = []
 shellSort(alist)
 #for gui, itkinter.py? 
 

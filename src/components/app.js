@@ -5,12 +5,33 @@ import SortList from './sort-list'
 
 const todos = [
 {
-	task: 'make React tutorial',
+	task: '9',
 	isCompleted: false
 },
 {
-	task: 'eat dinner',
+	task: '5',
 	isCompleted: true
+},
+{
+	task: '3'
+},
+{
+	task: '6'
+},
+{
+	task: '8'
+},
+{
+	task: '1'
+},
+{
+	task: '4'
+},
+{
+	task: '2'
+},
+{
+	task: '7'
 }
 ];
 
@@ -18,10 +39,13 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.displayFinal = this.displayFinal.bind(this);
+
 		this.state = {
 			todos: todos,
 			mode: 'isBuilding',
-			listToSort: []
+			listToSort: [],
+			error: null
 		};
 	}
 
@@ -30,22 +54,33 @@ export default class App extends React.Component {
 			return (
 				<div>
 					<CreateTodo todos={this.state.todos} createTask={this.createTask.bind(this)}/>
+					<br />
 					<TodosList 
 					todos={this.state.todos}
 					toggleTask={this.toggleTask.bind(this)}
 					saveTask={this.saveTask.bind(this)}
 					deleteTask={this.deleteTask.bind(this)}
 					/>
+					{this.renderError()}
+					<br />
 					<button onClick={this.saveList.bind(this)}>Begin</button>
 				</div>
 			);
-		} 
-		return (
-			<div>
-				<SortList listToSort={this.state.listToSort} mode={this.state.mode}/>
-				<button onClick={this.startOver.bind(this)}>Start Over</button>
-			</div>
-		);
+		}  else if (this.state.mode === 'isSorting') {
+			return (
+				<div>
+					<SortList listToSort={this.state.listToSort} mode={this.state.mode} displayFinal={this.displayFinal}/>
+					<button onClick={this.startOver.bind(this)}>Start Over</button>
+				</div>
+			);
+		} else if (this.state.mode === 'isDisplaying') {
+			return (
+				<div>
+					{this.renderFinalList()}
+					<button onClick={this.startOver.bind(this)}>Start Over</button>
+				</div>
+			);
+		}
 	}
 
 	render() {
@@ -84,11 +119,51 @@ export default class App extends React.Component {
 
 	saveList() {
 		const listToSort = todos.map(function(x) {return x['task']}); 
-		this.setState({ mode: 'isSorting' });
 		this.state.listToSort = listToSort;
+		const validateInput = this.validateInput(this.state.listToSort.length);
+
+		if (validateInput) {
+			this.setState({ error: validateInput });
+			return;
+		}
+
+		this.setState({ error: null });
+		this.setState({ mode: 'isSorting' });
+
+
+	}
+
+	validateInput(length) {
+		if (length < 2) {
+			return 'Please enter at least 2 items.'
+		} else {
+			return null;
+		}
+	}
+
+	renderError() {
+		if (!this.state.error) {
+			return null;
+		}
+
+		return <div style={{ color: 'red'}}>{this.state.error}</div>
 	}
 
 	startOver() {
 		this.setState({ mode: 'isBuilding' });
+	}
+
+	displayFinal() {
+		this.setState({ mode: 'isDisplaying' });
+	}
+
+	renderFinalList() {
+		return (
+			<ol>
+				{this.state.listToSort.map(function(item, index) {
+					return <li key={index}>{item}</li>; 
+				})}
+			</ol>
+		);
 	}
 }
